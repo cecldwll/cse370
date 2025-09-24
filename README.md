@@ -1,15 +1,15 @@
 # cse370
 Software Engineering Principles
 
-File structure:
+File structure:  
 
-homepage:
-index.html
-index.css
-index.js
+homepage:  
+index.html  
+index.css  
+index.js  
 
 
-game pages:
-memory-match.html
-memory-match.js
-memory-match.css
+game pages:  
+memory-match.html  
+memory-match.js  
+memory-match.css  
