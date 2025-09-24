@@ -1,30 +1,30 @@
 # cse370
 Software Engineering Principles
 
-File structure:  
+## File structure:  
 
-Home Page:  
+### Home Page:  
 index.html  
 index.css  
 index.js  
 
 
-Game Pages:  
+### Game Pages:  
 memory-match.html  
 memory-match.js  
 memory-match.css  
 
 
-Functionality/Features:  
+## Functionality/Features:  
 
-Home Page:
+### Home Page:
 - [ ] Carosel
 - [ ] Picture
 - [ ] Name
 - [ ] Highscore
 
-Game Pages:  
-Memory Match:
+### Game Pages:  
+#### Memory Match:
 - [ ] Timer
 - [ ] Turn Count
 - [ ] Card Randomization
