@@ -41,5 +41,5 @@ memory-match.css
 ## Roles:
 - Jay: Homepage + Game Page HTML
 - Matthew: Scoring + Timer + Turn Count + Match Logic
-- Emma: Animations + Help with JavaScript
+- Emma: Animations + Logo + Help with JavaScript
 - Caitlyn: CSS + Ads + Help with JavaScript
