@@ -35,3 +35,11 @@ memory-match.css
 - [ ] Picture API
 - [ ] High Score Time
 - [ ] High Score Turns
+- [ ] Game Summary Popup
+
+
+## Roles:
+- Jay: Homepage + Game Page HTML
+- Matthew: Scoring + Timer + Turn Count + Match Logic
+- Emma: Animations + Help with JavaScript
+- Caitlyn: CSS + Ads + Help with JavaScript
