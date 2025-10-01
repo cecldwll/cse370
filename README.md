@@ -18,7 +18,7 @@ memory-match.css
 ## Functionality/Features:  
 
 ### Home Page:
-- [ ] Carosel
+- [ ] Carousel
 - [ ] Picture
 - [ ] Name
 - [ ] Highscore

@@ -1,0 +1,41 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap');
+@font-face {
+    font-family: Emerged;
+    src: url(Emerged.ttf) format('truetype');
+}
+
+/* styling variables */
+:root {
+    /* color palette */
+    --dark-blue: #2F4858;
+    --medium-blue: #33658A;
+    --light-blue: #86BBD8;
+    --light-orange: #F6AE2D;
+    --dark-orange: #F26419;
+
+    /* fonts */
+    --title-font: Emerged, Georgia, serif;
+    --paragraph-font: 'Monda', Arial, sans-serif;
+}
+
+
+/* header */
+h1 {
+    font-family: var(--title-font);
+    font-size: 60px;
+    font-weight: 100;
+    color: var(--dark-blue);
+}
+
+
+
+/* body */
+
+
+
+/* footer */
+
+
+
+/* media query & dynamic sizing */
