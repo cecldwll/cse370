@@ -21,6 +21,10 @@
 
 
 /* header */
+.logo {
+    height: 50px;
+}
+
 h1 {
     font-family: var(--title-font);
     font-size: 60px;
@@ -31,7 +35,9 @@ h1 {
 
 
 /* body */
-
+a, p {
+    font-family: var(--paragraph-font);
+}
 
 
 /* footer */
