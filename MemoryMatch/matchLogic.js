@@ -1,5 +1,9 @@
 // matchlogic
 async function MakeBoard(totalMatch){
+    const gameBoard = document.getElementById("gameBoard");
+    // clear board
+    gameBoard.innerHTML = ""
+    
     let cards = [];
     for (let i = 0; i < totalMatch*2;i++){
         cards.push(Math.floor(i/2));
@@ -9,9 +13,36 @@ async function MakeBoard(totalMatch){
     cards = shuffleArray(cards)
     console.log(cards)
 
-};
+    cards.forEach((value) => {
+        // create card with card class and value
+        const card = document.createElement("div");
+        card.classList.add("card")
+        card.dataset.value = value;
 
-async function shuffleArray(array) {
+
+        // create front and back states of card.
+        const front = document.createElement("div");
+        front.classList.add("front");
+        front.textContent = value;
+
+        const back = document.createElement("div");
+        back.classList.add("back");
+        back.textContent = "?";
+
+        card.appendChild(front);
+        card.appendChild(back);
+
+        // replace with flip animation.
+        card.addEventListener("click", () => {
+            card.classList.toggle("flipped");
+        });
+
+        // Add card to board
+        gameBoard.appendChild(card);
+    });
+}
+
+function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
 
     const j = Math.floor(Math.random() * (i + 1));
