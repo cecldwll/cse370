@@ -17,6 +17,28 @@
     /* fonts */
     --title-font: Emerged, Georgia, serif;
     --paragraph-font: 'Monda', Arial, sans-serif;
+
+    /* theme */
+    --bg-color: #1E1F22;
+    --card-bg: #2B2F33;
+    --text-color: #E9EEF3;
+}
+
+/* base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--paragraph-font);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -25,23 +47,149 @@
     height: 50px;
 }
 
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--medium-blue);
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: var(--medium-blue);
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 h1 {
     font-family: var(--title-font);
-    font-size: 60px;
+    color: var(--light-blue);
+    font-size: 3rem;
+    letter-spacing: 1px;
     font-weight: 100;
-    color: var(--dark-blue);
 }
 
 
-
-/* body */
-a, p {
-    font-family: var(--paragraph-font);
+/* nav */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
 }
 
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
 
-/* footer */
+nav a:hover {
+  color: var(--light-orange);
+}
 
+/* carousel container */
+.swiper {
+  width: 90%;
+  max-width: 1000px;
+  margin-top: 4rem;
+  position: relative;
+}
 
+/* slider wrapper*/
+.swiper > div {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-/* media query & dynamic sizing */
+/* slide cards */
+.swiper > div > a {
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: block;
+}
+
+.swiper > div > a:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.swiper > div > a div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.swiper h3 {
+  font-family: var(--title-font);
+  font-size: 1.5rem;
+  color: var(--light-orange);
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+.swiper p {
+  font-family: var(--paragraph-font);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* arrows placeholder styling (so they don’t look broken) */
+.swiper > div + div,
+.swiper > div + div + div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--medium-blue);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.swiper > div + div:hover,
+.swiper > div + div + div:hover {
+  opacity: 1;
+  background: var(--dark-orange);
+}
+
+.swiper > div + div {
+  left: 10px;
+}
+
+.swiper > div + div + div {
+  right: 10px;
+}
+
+/* responsive adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .swiper > div {
+    flex-direction: column;
+    align-items: center;
+  }
+}
