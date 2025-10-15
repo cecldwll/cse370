@@ -332,3 +332,56 @@ main {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
+
+/* Carousel container fix */
+.swiper {
+  position: relative; /* anchor arrows */
+  overflow: visible !important;
+  width: 90%;
+  max-width: 1100px;
+  margin-top: 9rem;
+  padding: 2rem 80px; /* space for buttons */
+}
+
+/* Slide sizing */
+.swiper-slide {
+  flex-shrink: 0;
+  width: 300px !important;
+  height: 200px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%; /* Center vertically relative to swiper container */
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--dark-orange);
+  color: var(--bg-color);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Move arrows outside container horizontally */
+.swiper-button-prev {
+  left: 0;
+  transform: translate(-100%, -50%);
+}
+
+.swiper-button-next {
+  right: 0;
+  transform: translate(100%, -50%);
+}
+
+/* Hover state */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: var(--light-orange);
+}
