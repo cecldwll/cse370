@@ -1,3 +1,122 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&family=Playfair+Display:wght@400;700&display=swap');
+@font-face {
+  font-family: Emerged;
+  src: url(../Emerged.ttf) format('truetype');
+}
+
+/* styling variables */
+:root {
+  --dark-blue: #111418;
+  --medium-blue: #243544;
+  --light-blue: #9EC5D8;
+  --light-orange: #F6AE2D;
+  --dark-orange: #F26419;
+  --title-font: Emerged, "Playfair Display", serif;
+  --paragraph-font: 'Monda', Arial, sans-serif;
+  --bg-color: #0E0F11;
+  --card-bg: #171A1D;
+  --text-color: #E9EEF3;
+}
+
+/* base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--paragraph-font);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.6;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* header */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 3rem;
+  background: rgba(23, 26, 29, 0.9);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+  transition: all 0.4s ease;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 52px;
+  transition: transform 0.3s ease;
+}
+
+h1 {
+  font-family: var(--title-font);
+  color: var(--light-blue);
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  transition: font-size 0.3s ease;
+}
+
+/* nav */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: var(--light-orange);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--light-orange);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  padding-top: var(--header-height, 9rem);
+}
+
+
+
 #game-board {
   display: grid;
   grid-template-columns: repeat(4, 100px);
