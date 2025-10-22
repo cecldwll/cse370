@@ -1,16 +1,16 @@
 // matchlogic
-async function MakeBoard(totalMatch){
+function MakeBoard(totalMatch){
     const gameBoard = document.getElementById("gameBoard");
     // clear board
     gameBoard.innerHTML = ""
     
     let cards = [];
     for (let i = 0; i < totalMatch*2;i++){
-        cards.push(Math.floor(i/2));
+        cards.push(i);
     }
 
     console.log(cards)
-    cards = shuffleArray(cards)
+    cards = ShuffleArray(cards)
     console.log(cards)
 
     cards.forEach((value) => {
@@ -49,7 +49,7 @@ async function MakeBoard(totalMatch){
     });
 }
 
-function shuffleArray(array) {
+function ShuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
 
     const j = Math.floor(Math.random() * (i + 1));
@@ -60,8 +60,60 @@ function shuffleArray(array) {
     return array;
 }
 
+function CompareCards(newCardValue){
+    UpdateTurnCounter();
+    console.log(redundancy)
+    if (newCardValue != redundancy[0]){
+        redundancy.push(newCardValue)
+        if (newCardValue % 2 == 1){
+            newCardValue -= 1
+        }
 
+        chosen.push(newCardValue)
+
+        if (chosen.length() == 2) {
+            if (chosen[0] == chosen[1]){
+                ScoreMatch();
+                
+            }
+            else {
+                // flipcard(redundancy[0]);               
+                // flipcard(redundancy[1]);
+                chosen.length = 0;
+                redundancy.length = 0;
+            }
+        }
+
+    }
+}
+function UpdateTurnCounter(){
+    const moveCounter = document.getElementById("move-counter");
+    moveCounter.dataset.value = Number(moveCounter.dataset.value || 0) + 1;
+    moveCounter.textContent = moveCounter.dataset.value; 
+
+}
+function ScoreMatch(){
+    score += 1
+    console.log(score)
+}
+
+function CardEventListeners(){
+    const cards = document.querySelectorAll(".card")
+    cards.forEach(card =>{
+        card.addEventListener("click", () =>{
+            const cardValue = Number(card.getAttribute("data-value"));
+            CompareCards(cardValue);
+        })
+    })
+}
+
+
+
+let score = 0
+let chosen = [];
+let redundancy = [];
 MakeBoard(8);
+CardEventListeners();
 
 // timer
 
