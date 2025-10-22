@@ -306,8 +306,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* debug stuff*/
-  border: 1px solid red !important;
   color: #F6AE2D !important; /* bright orange for visibility */
   background: transparent !important;
 }
@@ -351,6 +349,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 /* Navigation buttons */
@@ -373,11 +372,18 @@ main {
 .swiper-button-prev {
   left: 0;
   transform: translate(-100%, -50%);
+  text-align: center;
+  justify-content: center;
+  padding-top: 9px;
+  margin-top: 40px;
 }
 
 .swiper-button-next {
   right: 0;
   transform: translate(100%, -50%);
+  text-align: center;
+  padding-top: 9px;
+  margin-top: 40px;
 }
 
 /* Hover state */
@@ -385,3 +391,27 @@ main {
 .swiper-button-prev:hover {
   background: var(--light-orange);
 }
+
+/* Shrink and fade out as it exits */
+.shrinking {
+  transform: scale(0.85);
+  opacity: 0;
+}
+
+/* Fade and grow slightly as it enters */
+.growing {
+  transform: scale(1.1);
+  opacity: 0;
+  animation: fadeInGrow 0.5s forwards;
+}
+
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+} 
