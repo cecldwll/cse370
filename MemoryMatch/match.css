@@ -145,19 +145,20 @@ main {
 }
 
 
-.card.flipped .front {
+/* .card.flipped .front {
   display: none;
 }
 
 .card.flipped .back {
   display: none;
-}
+} */
 
 /* Emma's code */
 .card {
     width: 100px;
     height: 100px;
     perspective: 1000px;
+    cursor: pointer;
 }
 .card-inner {
     position: relative;
@@ -168,18 +169,18 @@ main {
     transform-style: preserve-3d;
 }
 
-.flip {
+.card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.front, .back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
 }
 
-.card-back {
+.back {
     transform: rotateY(180deg);
 }
 
@@ -191,7 +192,7 @@ main {
   transform-style: perserve-3d;
 }
 
-.flipped {
+.flip {
   transform: rotateY('180deg');
 }
 
