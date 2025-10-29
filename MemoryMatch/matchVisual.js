@@ -2,21 +2,6 @@
 
 const card = document.querySelector(".card");
 
-// Flip the card when clicked
-function cardFlip(){
-    const checkClass = card.classList.contains("flip");
-    console.log(checkClass);
-
-    if (checkClass === false) {
-        card.classList.add("flip");
-        console.log(checkClass);
-    }
-    else {
-        card.classList.remove("flip");
-        console.log(checkClass);
-    }
-}
-
 card.addEventListener("click", () => {
     card.classList.toggle("flipped");
 });
