@@ -2,10 +2,10 @@ function MakeBoard(totalMatch) {
   const gameBoard = document.getElementById("gameBoard");
   gameBoard.innerHTML = "";
 
+  // create pairs of values
   let cards = [];
   for (let i = 0; i < totalMatch; i++) {
-    cards.push(i);
-    cards.push(i); // duplicate for pair
+    cards.push(i, i);
   }
 
   cards = ShuffleArray(cards);
@@ -15,45 +15,31 @@ function MakeBoard(totalMatch) {
     card.classList.add("card");
     card.dataset.value = value;
 
-        // Create card inner div
-        const cardInner = document.createElement("div");
-        cardInner.classList.add("card-inner")
-        cardInner.textContent = value;
-
-    const inner = document.createElement("div");
-    inner.classList.add("card-inner");
+    const cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
 
     const front = document.createElement("div");
     front.classList.add("front");
     front.textContent = "?";
 
-        const back = document.createElement("div");
-        back.classList.add("back");
-        back.textContent = "?";
-
-        card.appendChild(cardInner);
-        cardInner.appendChild(front);
-        cardInner.appendChild(back);
-
-        // replace with flip animation.
-        const getCard = document.querySelector(".card");
-        getCard.addEventListener("click", () => {
-            card.classList.toggle("flipped");
-        });
-
-        // Add card to board
-        gameBoard.appendChild(card);
-    });
     const back = document.createElement("div");
     back.classList.add("back");
     back.textContent = value;
 
-    inner.appendChild(front);
-    inner.appendChild(back);
-    card.appendChild(inner);
+    cardInner.appendChild(front);
+    cardInner.appendChild(back);
+    card.appendChild(cardInner);
     gameBoard.appendChild(card);
+
+    // flip and compare on click
+    card.addEventListener("click", () => {
+      if (card.classList.contains("flipped")) return;
+      card.classList.add("flipped");
+      CompareCards(card, value);
+    });
   });
 }
+
 
 function ShuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
