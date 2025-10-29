@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="../images/bmg-favicon.svg">
     <link rel="stylesheet" href="match.css">
     <script defer src="matchLogic.js"></script>
+    <script defer src="matchVisual.js"></script>
 </head>
 <body>
     <header>
@@ -18,12 +19,67 @@
         <nav>
             <ul>
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="match.html">Memory Match</a></li>
-                <li><a href="">Placeholder</a></li>
+                <li><a href="../MemoryMatch/match.html">Memory Match</a></li>
+                <li><a href="../TicTacToe/tictactoe.html">Tic Tac Toe</a></li>
             </ul>
         </nav>
     </header>
     
+    <main>
+        <section>
+        <h2>Memory Match</h2>
+        <div>
+            <span>Best Time: --:--</span>
+            <span>Best Moves: --</span>
+        </div>
+    
+        <div>
+            <span>Time: --:--</span>
+            <span>Moves: --</span>
+        </div>
+        <div>
+            <button aria-label: "Settings">⚙️</button>
+        </div>
+        </section>
+        <!-- Settings Modal -->
+        <div id="" style="display: none;">
+            <h2>Settings</h2>
+            <label for="">Theme:</label>
+            <select id="">
+                <option value="">Church</option>
+                <option value="">Emojis</option>
+                <option value="">Shapes</option>
+            </select>
+    
+            <label for="">Difficulty:</label>
+            <select id="">
+                <option value="">Small (4x4)</option>
+                <option value="">Medium (5x6)</option>
+                <option value="">Large (6x6)</option>
+            </select>
+    
+            <button id="close-settings">Close</button>
+        </div>
+        <div>
+            <p>Temporary card flip testing div. Will be removed.</p>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>F</p>
+                    </div>
+                    <div class="card-back">
+                        <p>B</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Game Board -->
+        <div id="gameBoard">
+            <!-- Cards will be dynamically generated here -->
+             <p>Game Board Placeholder</p>
+        </div>
+    </main>
     <section>
     <div>
         <span>Best Time: --:--</span>

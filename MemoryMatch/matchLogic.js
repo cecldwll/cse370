@@ -15,6 +15,11 @@ function MakeBoard(totalMatch) {
     card.classList.add("card");
     card.dataset.value = value;
 
+        // Create card inner div
+        const cardInner = document.createElement("div");
+        cardInner.classList.add("card-inner")
+        cardInner.textContent = value;
+
     const inner = document.createElement("div");
     inner.classList.add("card-inner");
 
@@ -22,6 +27,23 @@ function MakeBoard(totalMatch) {
     front.classList.add("front");
     front.textContent = "?";
 
+        const back = document.createElement("div");
+        back.classList.add("back");
+        back.textContent = "?";
+
+        card.appendChild(cardInner);
+        cardInner.appendChild(front);
+        cardInner.appendChild(back);
+
+        // replace with flip animation.
+        const getCard = document.querySelector(".card");
+        getCard.addEventListener("click", () => {
+            card.classList.toggle("flipped");
+        });
+
+        // Add card to board
+        gameBoard.appendChild(card);
+    });
     const back = document.createElement("div");
     back.classList.add("back");
     back.textContent = value;
