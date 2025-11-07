@@ -94,7 +94,12 @@ function UpdateTurnCounter() {
 function ScoreMatch() {
   score++;
   console.log("Score:", score);
-  if (score === totalMatch) alert("You win!");
+  if (score === totalMatch) {
+    // Wait until the final card is fully flipped before displaying the win message
+    setTimeout(() => {
+      alert("You win!");
+    }, 600);
+  }
 }
 
 // Start game
