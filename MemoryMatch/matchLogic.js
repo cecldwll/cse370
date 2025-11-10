@@ -88,7 +88,7 @@ function CompareCards(card, value) {
 function UpdateTurnCounter() {
   const moveCounter = document.getElementById("move-counter");
   moveCounter.dataset.value = Number(moveCounter.dataset.value || 0) + 1;
-  moveCounter.textContent = moveCounter.dataset.value;
+  moveCounter.textContent = "Moves: " + moveCounter.dataset.value;
 }
 
 function ScoreMatch() {
