@@ -35,6 +35,10 @@ function MakeBoard(totalMatch) {
     card.addEventListener("click", () => {
       if (card.classList.contains("flipped")) return;
       card.classList.add("flipped");
+        gameBoard.style.pointerEvents = 'none';
+      setTimeout(() => {
+        gameBoard.style.pointerEvents = 'auto';
+      }, 600);
       CompareCards(card, value);
     });
   });
@@ -88,7 +92,7 @@ function CompareCards(card, value) {
 function UpdateTurnCounter() {
   const moveCounter = document.getElementById("move-counter");
   moveCounter.dataset.value = Number(moveCounter.dataset.value || 0) + 1;
-  moveCounter.textContent = moveCounter.dataset.value;
+  moveCounter.textContent = `Moves: ${moveCounter.dataset.value}`;
 }
 
 function ScoreMatch() {
