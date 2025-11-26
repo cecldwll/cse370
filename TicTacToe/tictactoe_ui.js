@@ -8,7 +8,7 @@ import {
 
 let wins = 0;
 let attempts = Number(localStorage.getItem("ttt_attempts")) || 0;
-const attemptsBox = document.getElementById("attempts");
+const attemptsBox = document.getElementById("attempts");    
 attemptsBox.textContent = `Attempts: ${attempts}`;
 const winsBox = document.getElementById("wins");
 
