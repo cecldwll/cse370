@@ -28,8 +28,18 @@
         <section>
             <h2>Tic Tac Toe</h2>
             <div>
-                <span>Attempts: --</span>
-                <span>Wins: 0</span>
+                <div>
+                    <span id="attempts">Attempts: 0</span>
+                    <span id="wins">Wins: 0</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="player-select">
+            <label class="toggle-label">Play as:</label>
+            <div id="symbol-toggle" class="toggle">
+                <span id="choose-x" class="toggle-option active">X</span>
+                <span id="choose-o" class="toggle-option">O</span>
             </div>
         </section>
 
@@ -49,6 +59,6 @@
     </main>
     
 </body>
-<script src="tictactoe_ui.js"></script>
-<script src="tictactoe_logic.js"></script>
+<script type="module" src="tictactoe_ui.js"></script>
+<script type="module" src="tictactoe_logic.js"></script>
 </html>
