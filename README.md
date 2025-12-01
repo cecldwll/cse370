@@ -3,6 +3,7 @@ Software Engineering Principles
 
 ## File structure:  
 
+Link: https://cecldwll.github.io/cse370/
 ### Home Page:  
 index.html  
 index.css  
