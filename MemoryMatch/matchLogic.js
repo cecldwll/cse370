@@ -95,6 +95,19 @@ function UpdateTurnCounter() {
   moveCounter.textContent = `Moves: ${moveCounter.dataset.value}`;
 }
 
+function setBestMoves() {
+  const bestMovesElement = document.getElementById("best-moves");
+  const storedMoves = localStorage.getItem("storedBestMoves");
+  if (storedMoves === null) {
+    bestMovesElement.dataset.value = Infinity;
+    bestMovesElement.textContent = "Best Moves: --";
+  } else {
+    const value = Number(storedMoves);
+    bestMovesElement.dataset.value = value;
+    bestMovesElement.textContent = `Best Moves: ${value}`;
+  }
+}
+
 function ScoreMatch() {
   score++;
   console.log("Score:", score);
@@ -103,9 +116,20 @@ function ScoreMatch() {
     setTimeout(() => {
       alert("You win!");
     }, 600);
+    // Update best moves counter
+    const moveCounterValue = Number(document.getElementById("move-counter").dataset.value);
+    const bestMovesElement = document.getElementById("best-moves");
+    let storedMoves = Number(localStorage.getItem("storedBestMoves")) || Infinity;
+    if (moveCounterValue < storedMoves) {
+      localStorage.setItem("storedBestMoves", moveCounterValue);
+      storedMoves = moveCounterValue;
+    }
+    bestMovesElement.dataset.value = storedMoves;
+    bestMovesElement.textContent = `Best Moves: ${storedMoves}`;
   }
 }
 
 // Start game
 MakeBoard(totalMatch);
 CardEventListeners();
+setBestMoves();

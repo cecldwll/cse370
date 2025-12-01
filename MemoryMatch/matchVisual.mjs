@@ -9,4 +9,4 @@ async function getEmojis(count = 8) {
     return shuffled.slice(0, count).map(e => e.htmlCode[0]);
 }
 
-getEmojis(8);
+// getEmojis(8);
