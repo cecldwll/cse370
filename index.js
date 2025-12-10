@@ -47,3 +47,30 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') updateCarousel('next');
   if (e.key === 'ArrowLeft') updateCarousel('prev');
 });
+
+function setBestMoves() {
+  const bestMovesElement = document.getElementById("best-moves");
+  const storedMoves = localStorage.getItem("storedBestMoves");
+  if (storedMoves === null) {
+    bestMovesElement.dataset.value = Infinity;
+    bestMovesElement.textContent = "Best Moves: --";
+  } else {
+    const value = Number(storedMoves);
+    bestMovesElement.dataset.value = value;
+    bestMovesElement.textContent = `Best Moves: ${value}`;
+  }
+}
+
+function setAttempts() {
+  const attemptsElement = document.getElementById("attempts");
+  const storedAttempts = localStorage.getItem("ttt_attempts");
+  if (storedAttempts === null) {
+    attemptsElement.textContent = "Attempts: --";
+  } else {
+    const value = Number(storedAttempts);
+    attemptsElement.textContent = `Attempts: ${value}`;
+  }
+}
+
+setBestMoves();
+setAttempts();
