@@ -93,6 +93,8 @@ function UpdateTurnCounter() {
   const moveCounter = document.getElementById("move-counter");
   moveCounter.dataset.value = Number(moveCounter.dataset.value || 0) + 1;
   moveCounter.textContent = `Moves: ${moveCounter.dataset.value}`;
+  // -------start timer start here---------------
+  if (moveCounter.dataset.value == 1){stopwatch.start()}
 }
 
 function setBestMoves() {
@@ -114,7 +116,11 @@ function ScoreMatch() {
   if (score === totalMatch) {
     // Wait until the final card is fully flipped before displaying the win message
     setTimeout(() => {
-      alert("You win!");
+      // -----------end timer here -------------
+    stopwatch.stop();
+
+      // -----------update local storage.------
+      alert(`You win! \n It only took you ${stopwatch.timescore}`);
     }, 600);
     // Update best moves counter
     const moveCounterValue = Number(document.getElementById("move-counter").dataset.value);
@@ -131,5 +137,92 @@ function ScoreMatch() {
 
 // Start game
 MakeBoard(totalMatch);
+// --------load local scores-------------
 CardEventListeners();
-setBestMoves();
+
+
+
+
+
+
+
+
+// test
+
+class Stopwatch {
+  constructor(displayElement) {
+      this.displayElement = displayElement;
+      this.startTime = 0;
+      this.elapsedTime = 0;
+      this.timerInterval = null;
+      this.isRunning = false;
+      this.timescore = ""
+      
+  }
+
+  start() {
+      if (!this.isRunning) {
+          this.startTime = Date.now() - this.elapsedTime;
+          this.timerInterval = setInterval(() => this.update(), 10);
+          this.isRunning = true;
+      }
+  }
+
+  stop() {
+      if (this.isRunning) {
+          clearInterval(this.timerInterval);
+          this.elapsedTime = Date.now() - this.startTime;
+          this.isRunning = false;
+      }
+  }
+
+  reset() {
+      clearInterval(this.timerInterval);
+      this.startTime = 0;
+      this.elapsedTime = 0;
+      this.isRunning = false;
+      this.displayElement.textContent = '00:00.00';
+  }
+
+  update() {
+      const currentTime = Date.now();
+      this.elapsedTime = currentTime - this.startTime;
+
+      let totalMilliseconds = this.elapsedTime;
+      let minutes = Math.floor((totalMilliseconds / (1000 * 60)));
+      let seconds = Math.floor((totalMilliseconds / 1000) % 60);
+      let milliseconds = Math.floor((totalMilliseconds % 1000) / 10);
+
+      minutes = String(minutes).padStart(2, '0');
+      seconds = String(seconds).padStart(2, '0');
+      milliseconds = String(milliseconds).padStart(2, '0');
+      this.timescore =`${minutes}:${seconds}.${milliseconds}`;
+      this.displayElement.textContent = `Time: ${this.timescore}`;
+  }
+  // Get the score in milliseconds (for ranking - lower is better)
+getScore() {
+    return this.elapsedTime;
+}
+
+// Get the score in seconds (alternative format)
+getScoreInSeconds() {
+    return this.elapsedTime / 1000;
+}
+
+// Get a formatted time string (for display/storage)
+getFormattedTime() {
+    let totalMilliseconds = this.elapsedTime;
+    let minutes = Math.floor((totalMilliseconds / (1000 * 60)) % 60);
+    let seconds = Math.floor((totalMilliseconds / 1000) % 60);
+    let milliseconds = Math.floor((totalMilliseconds % 1000) / 10);
+
+    minutes = String(minutes).padStart(2, '0');
+    seconds = String(seconds).padStart(2, '0');
+    milliseconds = String(milliseconds).padStart(2, '0');
+
+    return `${minutes}:${seconds}.${milliseconds}`;
+}
+}
+
+const timer = document.getElementById('Timer')
+const stopwatch = new Stopwatch(timer)
