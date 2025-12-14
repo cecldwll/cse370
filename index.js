@@ -61,6 +61,23 @@ function setBestMoves() {
   }
 }
 
+function setBestTime() {
+  const bestTimeElement = document.getElementById("best-time");
+  const storedTime = localStorage.getItem("storedBestTime");
+  if (storedTime === null) {
+    bestTimeElement.textContent = "Best Time: --:--.--";
+  } else {
+    bestTimeElement.textContent = `Best Time: ${formatTime(storedTime)}`;
+  }
+}
+
+function formatTime(milliseconds) {
+  let minutes = Math.floor(milliseconds / (1000 * 60));
+  let seconds = Math.floor((milliseconds / 1000) % 60);
+  let ms = Math.floor((milliseconds % 1000) / 10);
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(ms).padStart(2, "0")}`;
+}
+
 function setAttempts() {
   const attemptsElement = document.getElementById("attempts");
   const storedAttempts = localStorage.getItem("ttt_attempts");
@@ -73,4 +90,5 @@ function setAttempts() {
 }
 
 setBestMoves();
+setBestTime();
 setAttempts();

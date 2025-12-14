@@ -35,10 +35,6 @@ function MakeBoard(totalMatch) {
     card.addEventListener("click", () => {
       if (card.classList.contains("flipped")) return;
       card.classList.add("flipped");
-        gameBoard.style.pointerEvents = 'none';
-      setTimeout(() => {
-        gameBoard.style.pointerEvents = 'auto';
-      }, 600);
       CompareCards(card, value);
     });
   });
@@ -70,20 +66,33 @@ function CardEventListeners() {
   });
 }
 
+function turnOffClicking() {
+  gameBoard.style.pointerEvents = 'none';
+
+}
+
+function turnOnClicking() {
+  gameBoard.style.pointerEvents = 'auto';
+
+}
+
 function CompareCards(card, value) {
   UpdateTurnCounter();
   chosen.push({ card, value });
 
   if (chosen.length === 2) {
+    turnOffClicking();
     const [first, second] = chosen;
     if (first.value === second.value) {
       ScoreMatch();
       chosen = [];
+      turnOnClicking();
     } else {
       setTimeout(() => {
         first.card.classList.remove("flipped");
         second.card.classList.remove("flipped");
         chosen = [];
+        turnOnClicking();
       }, 1000);
     }
   }
@@ -110,6 +119,23 @@ function setBestMoves() {
   }
 }
 
+function setBestTime() {
+  const bestTimeElement = document.getElementById("best-time");
+  const storedTime = localStorage.getItem("storedBestTime");
+  if (storedTime === null) {
+    bestTimeElement.textContent = "Best Time: --:--.--";
+  } else {
+    bestTimeElement.textContent = `Best Time: ${formatTime(storedTime)}`;
+  }
+}
+
+function formatTime(milliseconds) {
+  let minutes = Math.floor(milliseconds / (1000 * 60));
+  let seconds = Math.floor((milliseconds / 1000) % 60);
+  let ms = Math.floor((milliseconds % 1000) / 10);
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(ms).padStart(2, "0")}`;
+}
+
 function ScoreMatch() {
   score++;
   console.log("Score:", score);
@@ -118,12 +144,19 @@ function ScoreMatch() {
     setTimeout(() => {
       // -----------end timer here -------------
     stopwatch.stop();
+    // Update best time
+    updateBestTime();
 
       // -----------update local storage.------
       alert(`You win! \n It only took you ${stopwatch.timescore}`);
     }, 600);
-    // Update best moves counter
-    const moveCounterValue = Number(document.getElementById("move-counter").dataset.value);
+    // Update best moves
+    updateBestMoves();
+  }
+}
+
+function updateBestMoves() {
+  const moveCounterValue = Number(document.getElementById("move-counter").dataset.value);
     const bestMovesElement = document.getElementById("best-moves");
     let storedMoves = Number(localStorage.getItem("storedBestMoves")) || Infinity;
     if (moveCounterValue < storedMoves) {
@@ -132,12 +165,24 @@ function ScoreMatch() {
     }
     bestMovesElement.dataset.value = storedMoves;
     bestMovesElement.textContent = `Best Moves: ${storedMoves}`;
+}
+
+function updateBestTime() {
+  const bestTimeElement = document.getElementById("best-time");
+  const currentTime = stopwatch.getScore();
+  let storedBestTime = Number(localStorage.getItem("storedBestTime")) || Infinity;
+  if (currentTime < storedBestTime) {
+    localStorage.setItem("storedBestTime", currentTime);
+    storedBestTime = currentTime;
   }
+  bestTimeElement.textContent = `Best Time: ${formatTime(storedBestTime)}`;
 }
 
 // Start game
 MakeBoard(totalMatch);
 // --------load local scores-------------
+setBestMoves();
+setBestTime();
 CardEventListeners();
 
 
