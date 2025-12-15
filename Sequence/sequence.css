@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&family=Playfair+Display:wght@400;700&display=swap');
+
+@font-face {
+  font-family: Emerged;
+  src: url(../Emerged.ttf) format('truetype');
+}
+
+/* -----------------------------
+   VARIABLES
+------------------------------ */
+
+:root {
+  --dark-blue: #111418;
+  --medium-blue: #243544;
+  --light-blue: #9EC5D8;
+  --light-orange: #F6AE2D;
+  --dark-orange: #F26419;
+  --title-font: Emerged, "Playfair Display", serif;
+  --paragraph-font: 'Monda', Arial, sans-serif;
+  --bg-color: #0E0F11;
+  --card-bg: #171A1D;
+  --text-color: #E9EEF3;
+}
+
+/* -----------------------------
+   BASE
+------------------------------ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--paragraph-font);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.6;
+}
+
+/* -----------------------------
+   HEADER (MATCHES OTHER PAGES)
+------------------------------ */
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.4rem 3rem;
+  background: rgba(23, 26, 29, 0.9);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 52px;
+}
+
+h1 {
+  font-family: var(--title-font);
+  color: var(--light-blue);
+  font-size: 2.6rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* -----------------------------
+   NAV
+------------------------------ */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: var(--light-orange);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--light-orange);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* -----------------------------
+   MAIN CONTENT
+------------------------------ */
+
+main {
+  width: 100%;
+  padding-top: 7rem; /* offset fixed header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -----------------------------
+   SECTION HEADER
+------------------------------ */
+
+main section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+main h2 {
+  font-family: var(--title-font);
+  color: var(--light-orange);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 100;
+}
+
+#score,
+#high-score {
+  font-size: 1.2rem;
+  margin: 0 0.6rem;
+}
+
+#status {
+  margin-top: 0.6rem;
+  font-size: 1.1rem;
+  color: var(--light-blue);
+}
+
+/* -----------------------------
+   GAME BOARD
+------------------------------ */
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cell {
+  width: 120px;
+  height: 120px;
+  background: var(--card-bg);
+  border: 2px solid var(--light-blue);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.cell:hover {
+  background: var(--medium-blue);
+}
+
+.cell.active {
+  background: var(--light-orange);
+  transform: scale(1.05);
+}
+
+/* -----------------------------
+   BUTTON
+------------------------------ */
+
+button {
+  margin-top: 25px;
+  padding: 10px 26px;
+  background: var(--light-blue);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: var(--light-orange);
+  transform: translateY(-2px);
+}
+
+/* -----------------------------
+   RESPONSIVE
+------------------------------ */
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    padding-top: 12rem;
+  }
+
+  #game-board {
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+  }
+
+  .cell {
+    width: 90px;
+    height: 90px;
+  }
+}
